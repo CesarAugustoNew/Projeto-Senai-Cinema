@@ -4,6 +4,25 @@ Front-end em **React + Vite** de um sistema de cinema: catálogo de filmes, sess
 
 ---
 
+<img width="1920" height="925" alt="catalogo1" src="https://github.com/user-attachments/assets/b25b2329-f9b2-4c3d-bd41-224d32090055" />
+<img width="1917" height="854" alt="catalogo2" src="https://github.com/user-attachments/assets/540bce65-6151-4342-a9a8-13cadf09724a" />
+<br><br>
+<img width="1912" height="923" alt="Filmes" src="https://github.com/user-attachments/assets/95694602-2d50-4d09-b71a-a0ef5a77aa4e" />
+<br><br>
+
+<img width="1920" height="919" alt="Sala" src="https://github.com/user-attachments/assets/fc4974d3-0adf-427d-8ead-8585509b8fc3" />
+<br><br>
+
+<img width="1922" height="913" alt="sessoes" src="https://github.com/user-attachments/assets/8e4d4379-16c3-4346-ad98-0081939de814" />
+<br><br>
+
+<img width="1917" height="914" alt="reservas" src="https://github.com/user-attachments/assets/488ecb87-2499-473e-99db-380faa8cd22a" />
+<br><br>
+<img width="1918" height="920" alt="minhas reservas" src="https://github.com/user-attachments/assets/dbbfd995-8a76-4a53-bb90-d31aa6063947" />
+<br><br>
+
+<img width="1920" height="911" alt="paineladm" src="https://github.com/user-attachments/assets/9966b33e-8da4-448c-9449-032f85a71ea7" />
+
 ## 🛠 Tecnologias
 
 - React 19
@@ -97,27 +116,7 @@ O token JWT retornado no login/cadastro é salvo no `localStorage` (`token` e `u
 Rotas administrativas no front (`/admin/*`) são protegidas por `ProtectedRoute`, que redireciona para `/login` (sem sessão) ou para `/` (sessão sem cargo `ADMIN`).
 
 ---
-## Catalogo 
-<img width="1920" height="925" alt="catalogo1" src="https://github.com/user-attachments/assets/b25b2329-f9b2-4c3d-bd41-224d32090055" />
-<img width="1917" height="854" alt="catalogo2" src="https://github.com/user-attachments/assets/540bce65-6151-4342-a9a8-13cadf09724a" />
 
-## Filmes
-<img width="1912" height="923" alt="Filmes" src="https://github.com/user-attachments/assets/95694602-2d50-4d09-b71a-a0ef5a77aa4e" />
-
-## Sala
-<img width="1920" height="919" alt="Sala" src="https://github.com/user-attachments/assets/fc4974d3-0adf-427d-8ead-8585509b8fc3" />
-
-## Sessoes
-<img width="1922" height="913" alt="sessoes" src="https://github.com/user-attachments/assets/8e4d4379-16c3-4346-ad98-0081939de814" />
-
-## Reservas
-<img width="1917" height="914" alt="reservas" src="https://github.com/user-attachments/assets/488ecb87-2499-473e-99db-380faa8cd22a" />
-
-## Minhas Reservas
-<img width="1918" height="920" alt="minhas reservas" src="https://github.com/user-attachments/assets/dbbfd995-8a76-4a53-bb90-d31aa6063947" />
-
-## Painel ADM
-<img width="1920" height="911" alt="paineladm" src="https://github.com/user-attachments/assets/9966b33e-8da4-448c-9449-032f85a71ea7" />
 
 
 
