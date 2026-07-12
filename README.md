@@ -9,18 +9,16 @@ Front-end em **React + Vite** de um sistema de cinema: catálogo de filmes, sess
 <br><br>
 <img width="1912" height="923" alt="Filmes" src="https://github.com/user-attachments/assets/95694602-2d50-4d09-b71a-a0ef5a77aa4e" />
 <br><br>
-
 <img width="1920" height="919" alt="Sala" src="https://github.com/user-attachments/assets/fc4974d3-0adf-427d-8ead-8585509b8fc3" />
 <br><br>
-
 <img width="1922" height="913" alt="sessoes" src="https://github.com/user-attachments/assets/8e4d4379-16c3-4346-ad98-0081939de814" />
 <br><br>
-
 <img width="1917" height="914" alt="reservas" src="https://github.com/user-attachments/assets/488ecb87-2499-473e-99db-380faa8cd22a" />
-<br><br>
+<br><br> 
 <img width="1918" height="920" alt="minhas reservas" src="https://github.com/user-attachments/assets/dbbfd995-8a76-4a53-bb90-d31aa6063947" />
+<br><br> 
+<img width="1908" height="1059" alt="image" src="https://github.com/user-attachments/assets/2c310a80-ab38-4664-bcfe-0c3ff4ce95f4" />
 <br><br>
-
 <img width="1920" height="911" alt="paineladm" src="https://github.com/user-attachments/assets/9966b33e-8da4-448c-9449-032f85a71ea7" />
 
 ## 🛠 Tecnologias
