@@ -1,6 +1,16 @@
-# 🎬 CineSenai — Front-end (CineSenai-Final)
+# 🎬 CineSenai — Front-end
 
-Front-end em **React + Vite** de um sistema de cinema: catálogo de filmes, sessões, reserva de assentos e um painel administrativo. Consome a API **SpringBootAPI-Cinema**.
+
+Aplicação web responsável pela interface do sistema e interação com a API.
+
+**Tecnologias utilizadas:**
+
+![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square\&logo=react\&logoColor=black)
+![React Router](https://img.shields.io/badge/React%20Router-7-CA4245?style=flat-square\&logo=reactrouter\&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square\&logo=vite\&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square\&logo=css3\&logoColor=white)
+
+
 
 ---
 
