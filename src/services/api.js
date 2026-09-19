@@ -18,18 +18,22 @@
 // =====================================================================
 
 /*
-  BASE_URL é o endereço inicial de todos os endpoints.
+  Em desenvolvimento local (npm run dev), o Vite tem um proxy
+  configurado em vite.config.js que encaminha tudo que começa com
+  /api para http://localhost:8080 — então BASE_URL pode ficar vazio.
 
-  Está vazio porque o Vite está configurado como intermediário:
-  toda requisição que começa com /api é automaticamente
-  encaminhada para http://localhost:8080.
+  Só que esse proxy só existe enquanto o servidor do Vite estiver
+  rodando (`npm run dev`). No build de produção publicado na Vercel
+  não existe mais nenhum "Vite" rodando por trás — é só um monte de
+  arquivos estáticos — então esse proxy simplesmente não existe lá, e
+  a chamada cairia no próprio domínio da Vercel (dando 404) em vez de
+  ir para a API de verdade.
 
-  Essa configuração fica em vite.config.js.
-
-  Na semana da integração, só precisamos trocar a URL
-  dentro do vite.config.js — este arquivo não muda.
+  Por isso, em produção, a URL da API deve vir de uma variável de
+  ambiente (VITE_API_URL, configurada no painel da Vercel), apontando
+  direto para o endereço do back-end publicado no Render.
 */
-const BASE_URL = '';
+const BASE_URL = import.meta.env.VITE_API_URL || '';
 
 
 // =====================================================================
@@ -134,7 +138,7 @@ const request = async (url, options = {}) => {
     Sem await, o código continuaria executando antes
     de receber a resposta do servidor.
   */
-  const response = await fetch(url, {
+  const response = await fetch(`${BASE_URL}${url}`, {
     ...options,
     headers,
   });
