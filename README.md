@@ -9,7 +9,7 @@ Front-end de um sistema de cinema — catálogo de filmes, sessões, reserva de 
 ![React Router](https://img.shields.io/badge/React%20Router-7-CA4245?style=flat-square&logo=reactrouter&logoColor=white)
 ![Deploy](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 
-[**🔗 Aplicação publicada**](#) · [**⚙️ Repositório da API**](#)
+[**🔗 Aplicação publicada**](https://projeto-senai-cinema.vercel.app/login) · [**⚙️ Repositório da API**](https://github.com/CesarAugustoNew/SpringBootAPI-Cinema)
 
 </div>
 
