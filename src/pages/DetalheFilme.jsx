@@ -200,7 +200,14 @@ export const DetalheFilme = () => {
       {/* Card principal do filme/série */}
       <div className="glass detalhe-card">
         {/* Poster */}
-        <div className="detalhe-poster">
+        <div
+          className="detalhe-poster"
+          style={
+            filme.urlPoster
+              ? { '--poster-bg': `url(${JSON.stringify(filme.urlPoster)})` }
+              : undefined
+          }
+        >
           {filme.urlPoster ? (
             <img
               src={filme.urlPoster}
@@ -279,6 +286,7 @@ export const DetalheFilme = () => {
                   value={comentario}
                   onChange={(e) => setComentario(e.target.value)}
                   rows={4}
+                  maxLength={1000}
                   disabled={enviando}
                 />
               </div>
@@ -286,7 +294,7 @@ export const DetalheFilme = () => {
               <button
                 type="submit"
                 className="btn btn-primary detalhe-submit-btn"
-                disabled={enviando || nota === 0}
+                disabled={enviando}
               >
                 {enviando ? 'Publicando...' : '✓ Publicar avaliação'}
               </button>

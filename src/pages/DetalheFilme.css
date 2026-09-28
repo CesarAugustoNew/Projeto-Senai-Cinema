@@ -118,14 +118,29 @@
 }
 
 .detalhe-poster {
+  position: relative;
+  overflow: hidden;
   background: #1a1d2b;
   min-height: 280px;
 }
 
+/* Fundo: pôster desfocado, para as sobras da imagem não ficarem vazias */
+.detalhe-poster::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background-image: var(--poster-bg, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) brightness(0.5);
+}
+
+/* contain: o pôster inteiro, sem ser cortado nem esticado */
 .detalhe-poster img {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 

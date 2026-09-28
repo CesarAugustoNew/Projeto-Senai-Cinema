@@ -128,12 +128,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 select.form-control {
+  cursor: pointer; /* mãozinha ao passar/abrir o seletor (ex.: gênero) */
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1.25rem;
   padding-right: 2.5rem;
+}
+
+select.form-control option {
+  cursor: pointer;
 }
 
 /* Button Styles */
@@ -264,10 +269,26 @@ select.form-control {
   background: #1f2937;
 }
 
+/* Fundo: o próprio pôster desfocado (definido via --poster-bg no JSX) */
+.movie-poster-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background-image: var(--poster-bg, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) brightness(0.5);
+}
+
+/*
+  object-fit: contain -> o pôster aparece inteiro dentro do card.
+  (cover cortava a imagem quando a proporção não era exatamente 2:3)
+*/
 .movie-poster {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.5s ease;
 }
 
@@ -276,6 +297,7 @@ select.form-control {
 }
 
 .movie-poster-fallback {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;

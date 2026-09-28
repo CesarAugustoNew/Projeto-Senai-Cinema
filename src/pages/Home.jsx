@@ -55,6 +55,20 @@ const GENERO_LABELS = {
 
 
 // =====================================================================
+// FUNÇÃO AUXILIAR: cssUrl
+// =====================================================================
+
+/*
+  Monta o valor CSS  url("...")  a partir do endereço do pôster.
+
+  O JSON.stringify coloca aspas e escapa qualquer caractere especial,
+  o que funciona tanto para URLs comuns quanto para imagens em base64
+  (data URLs) guardadas no banco.
+*/
+const cssUrl = (endereco) => `url(${JSON.stringify(endereco)})`;
+
+
+// =====================================================================
 // COMPONENTE HOME
 // =====================================================================
 
@@ -297,7 +311,6 @@ export const Home = () => {
         featuredMovie && (
 
           <div
-            className="featured-banner"
 
             /*
               A key muda junto com o filme exibido,
@@ -307,18 +320,49 @@ export const Home = () => {
             key={featuredMovie.id}
 
             /*
-              Define a imagem de fundo do banner.
-
-              Se houver pôster, utiliza a imagem.
-              Caso contrário, não aplica fundo.
+              Quando há pôster, o banner ganha uma classe extra que
+              reserva espaço à direita para a imagem.
             */
-            style={{
-              backgroundImage:
-                featuredMovie.urlPoster
-                  ? `url(${featuredMovie.urlPoster})`
-                  : 'none',
-            }}
+            className={
+              'featured-banner'
+              + (featuredMovie.urlPoster ? ' featured-banner--with-poster' : '')
+            }
           >
+
+            {/*
+              PÔSTER DO BANNER
+
+              Antes, o pôster (vertical) era usado como background-size:
+              cover em um banner largo (horizontal). O navegador ampliava
+              a imagem até cobrir a largura toda e cortava boa parte dela,
+              deixando-a estourada e "quebrada".
+
+              Agora são duas camadas:
+                1) featured-backdrop -> o mesmo pôster, desfocado, só
+                   para preencher o fundo com as cores do filme;
+                2) featured-poster   -> o pôster inteiro, sem cortes
+                   (object-fit: contain), ao lado do texto.
+            */}
+            {
+              featuredMovie.urlPoster && (
+                <>
+                  <div
+                    className="featured-backdrop"
+                    aria-hidden="true"
+                    style={{ backgroundImage: cssUrl(featuredMovie.urlPoster) }}
+                  />
+
+                  <img
+                    className="featured-poster"
+                    src={featuredMovie.urlPoster}
+                    alt={`Pôster do filme ${featuredMovie.titulo}`}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </>
+              )
+            }
 
             <div className="featured-content">
 
@@ -545,7 +589,20 @@ export const Home = () => {
                 >
 
                   {/* Área do pôster */}
-                  <div className="movie-poster-wrapper">
+                  {/*
+                    O pôster desfocado (--poster-bg) preenche o fundo do
+                    card; a imagem em si usa object-fit: contain, então
+                    aparece INTEIRA, sem ser cortada, mesmo quando a
+                    proporção dela não é exatamente a do card.
+                  */}
+                  <div
+                    className="movie-poster-wrapper"
+                    style={
+                      filme.urlPoster
+                        ? { '--poster-bg': cssUrl(filme.urlPoster) }
+                        : undefined
+                    }
+                  >
 
                     {
                       filme.urlPoster ? (
