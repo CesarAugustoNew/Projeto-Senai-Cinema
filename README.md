@@ -21,6 +21,34 @@ Esta é a tela do CineSenai: a parte que a pessoa usa no navegador para ver o ca
 
 A API que esse front-end consome é um projeto à parte, feito em Java com Spring Boot ([link do repositório](#)).
 
+## Demonstração
+<img width="1913" height="954" alt="cadastro" src="https://github.com/user-attachments/assets/dbda9daa-372e-4d76-92b4-76c52f3a6192" />
+<br>
+<br>
+<img width="1918" height="949" alt="login" src="https://github.com/user-attachments/assets/c5d359b5-6cb8-4410-adc4-761709eb2acc" />
+<br>
+<br>
+<img width="1915" height="944" alt="catalogofilmes" src="https://github.com/user-attachments/assets/d44a6501-b545-4e57-851e-1b418f5414c9" />
+<br>
+<br>
+<img width="1916" height="952" alt="filmeselecionado" src="https://github.com/user-attachments/assets/2ff5f30a-e073-4cd4-ade7-c3d70de587d3" />
+<br>
+<br>
+<img width="1916" height="952" alt="compra" src="https://github.com/user-attachments/assets/6faf0683-e8b3-4f57-bfe7-11dec84a570d" />
+<br>
+<br>
+<img width="1911" height="933" alt="minhasreservas" src="https://github.com/user-attachments/assets/4d360817-5981-4dba-8c42-83d803e44be7" />
+<br>
+<br>
+<img width="1917" height="946" alt="salascriadas" src="https://github.com/user-attachments/assets/ec346ae4-41fe-4147-934f-d1a3f427e0d5" />
+<br>
+<br>
+<img width="1915" height="946" alt="sessoes" src="https://github.com/user-attachments/assets/bafa2619-7508-4e3c-861f-86b97b7eb61e" />
+<br>
+<br>
+<img width="1908" height="941" alt="painel" src="https://github.com/user-attachments/assets/ed202b90-76c1-4588-b549-2f5224150b8f" />
+
+
 ## Funcionalidades
 
 - Catálogo de filmes em cartaz, com detalhes de cada um
