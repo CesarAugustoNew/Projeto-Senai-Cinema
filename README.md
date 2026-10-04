@@ -22,6 +22,8 @@ Esta é a tela do CineSenai: a parte que a pessoa usa no navegador para ver o ca
 A API que esse front-end consome é um projeto à parte, feito em Java com Spring Boot ([link do repositório](#)).
 
 ## Demonstração
+email: admin@cinemasenai.com
+senha: Admin@134
 <img width="1913" height="954" alt="cadastro" src="https://github.com/user-attachments/assets/dbda9daa-372e-4d76-92b4-76c52f3a6192" />
 <br>
 <br>
