@@ -69,6 +69,12 @@ export const Login = () => {
   */
   const [loading, setLoading] = useState(false);
 
+  /*
+    Mensagem de erro exibida abaixo do botão.
+    Vazia ('') = nenhum erro para mostrar.
+  */
+  const [erro, setErro] = useState('');
+
 
 
   // ===================================================================
@@ -135,13 +141,13 @@ export const Login = () => {
     */
     if (!email || !senha || (isRegister && !nome)) {
 
-      showToast(
-        'Por favor, preencha todos os campos.',
-        'error'
-      );
+      setErro('Por favor, preencha todos os campos.');
 
       return; // interrompe a execução da função
     }
+
+    // Limpa o erro da tentativa anterior antes de tentar de novo
+    setErro('');
 
 
     // ===============================================================
@@ -222,11 +228,18 @@ export const Login = () => {
         Caso ocorra qualquer erro durante o login
         ou cadastro, exibe uma mensagem.
       */
-      showToast(
-        error.message ||
-        'Ocorreu um erro ao processar sua solicitação.',
-        'error'
-      );
+      /*
+        No LOGIN, status 401/403 significa credenciais inválidas.
+        Mostramos uma mensagem clara em vez do código do erro.
+      */
+      if (!isRegister && (error.status === 401 || error.status === 403)) {
+        setErro('E-mail ou senha incorretos.');
+      } else {
+        setErro(
+          error.message ||
+          'Ocorreu um erro ao processar sua solicitação.'
+        );
+      }
     }
 
     // ===============================================================
@@ -555,6 +568,13 @@ return (
 
         </button>
 
+        {/* Mensagem de erro (aparece só quando existe) */}
+        {erro && (
+          <p className="auth-error" role="alert">
+            {erro}
+          </p>
+        )}
+
       </form>
 
 
@@ -590,9 +610,10 @@ return (
                 novamente a interface.
               */}
               <span
-                onClick={() =>
-                  setIsRegister(false)
-                }
+                onClick={() => {
+                  setIsRegister(false);
+                  setErro('');
+                }}
               >
                 Entrar
               </span>
@@ -607,9 +628,10 @@ return (
               Não tem uma conta?
 
               <span
-                onClick={() =>
-                  setIsRegister(true)
-                }
+                onClick={() => {
+                  setIsRegister(true);
+                  setErro('');
+                }}
               >
                 Cadastrar-se
               </span>
