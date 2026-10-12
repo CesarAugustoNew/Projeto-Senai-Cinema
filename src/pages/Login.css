@@ -12,3 +12,15 @@
   margin-top: 1rem;
   padding: 0.85rem;
 }
+
+/* Mensagem de erro abaixo do botão de login/cadastro */
+.auth-error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: var(--radius-sm);
+}
