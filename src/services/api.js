@@ -201,9 +201,12 @@ const request = async (url, options = {}) => {
       português), não "message". Verificamos os dois para não depender
       de uma única convenção.
     */
-    throw new Error(
+    const erro = new Error(
       errorData.mensagem || errorData.message || `Erro na requisição (Status: ${response.status})`
     );
+    // Guardamos o status para quem chamou poder decidir a mensagem (ex.: tela de login).
+    erro.status = response.status;
+    throw erro;
   }
 
 
