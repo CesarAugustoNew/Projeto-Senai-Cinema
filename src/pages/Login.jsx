@@ -5,7 +5,7 @@
 // React é a biblioteca principal utilizada para criar interfaces.
 // useState é um Hook que permite armazenar informações que podem mudar
 // durante a execução do componente.
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Hook do React Router responsável por navegar entre páginas.
 // Exemplo: após fazer login, podemos enviar o usuário para a Home.
@@ -62,6 +62,12 @@ export const Login = () => {
   const [senha, setSenha] = useState('');
 
   /*
+    Confirmação da senha (usada somente no cadastro).
+    Evita que a pessoa crie a conta com uma senha digitada errada.
+  */
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+
+  /*
     Controla o carregamento.
 
     false = formulário disponível
@@ -74,6 +80,13 @@ export const Login = () => {
     Vazia ('') = nenhum erro para mostrar.
   */
   const [erro, setErro] = useState('');
+
+  /*
+    Fica true quando a API demora mais de 4 segundos para responder.
+    No plano gratuito do Render a API "dorme" após ~15 minutos sem uso
+    e leva um tempo para acordar; este aviso explica a espera.
+  */
+  const [lento, setLento] = useState(false);
 
 
 
@@ -101,6 +114,25 @@ export const Login = () => {
   */
   const navigate = useNavigate();
 
+
+
+  // ===================================================================
+  // AVISO DE API "ACORDANDO"
+  // ===================================================================
+
+  /*
+    Quando loading vira true, inicia um cronômetro de 4 segundos.
+    Se a resposta ainda não chegou, mostra o aviso.
+    Quando loading volta a false, o aviso some e o cronômetro é cancelado.
+  */
+  useEffect(() => {
+    if (!loading) {
+      setLento(false);
+      return;
+    }
+    const timer = setTimeout(() => setLento(true), 4000);
+    return () => clearTimeout(timer);
+  }, [loading]);
 
 
   // ===================================================================
@@ -139,11 +171,17 @@ export const Login = () => {
       significa:
       "se estiver cadastrando, o nome também é obrigatório"
     */
-    if (!email || !senha || (isRegister && !nome)) {
+    if (!email || !senha || (isRegister && (!nome || !confirmarSenha))) {
 
       setErro('Por favor, preencha todos os campos.');
 
       return; // interrompe a execução da função
+    }
+
+    // No cadastro, as duas senhas digitadas precisam ser idênticas
+    if (isRegister && senha !== confirmarSenha) {
+      setErro('As senhas não coincidem.');
+      return;
     }
 
     // Limpa o erro da tentativa anterior antes de tentar de novo
@@ -520,6 +558,36 @@ return (
 
 
         {/* ======================================================
+           CAMPO CONFIRMAR SENHA (somente no cadastro)
+        ====================================================== */}
+
+        {isRegister && (
+
+          <div className="form-group">
+
+            <label htmlFor="confirmarSenha">
+              Confirmar Senha
+            </label>
+
+            <input
+              id="confirmarSenha"
+              type="password"
+              className="form-control"
+              placeholder="Digite a senha novamente"
+              autoComplete="new-password"
+              value={confirmarSenha}
+              onChange={(e) =>
+                setConfirmarSenha(e.target.value)
+              }
+              disabled={loading}
+            />
+
+          </div>
+
+        )}
+
+
+        {/* ======================================================
            BOTÃO DE ENVIO
         ====================================================== */}
 
@@ -557,7 +625,13 @@ return (
           {
             loading
 
-              ? 'Carregando...'
+              ? (
+                <>
+                  {/* Círculo girando enquanto a API responde */}
+                  <span className="spinner" aria-hidden="true" />
+                  {isRegister ? 'Cadastrando...' : 'Entrando...'}
+                </>
+              )
 
               : isRegister
 
@@ -567,6 +641,14 @@ return (
           }
 
         </button>
+
+        {/* Aviso exibido se a API estiver demorando (acordando) */}
+        {loading && lento && (
+          <p className="auth-wake-hint" role="status">
+            O servidor estava em repouso e está acordando.
+            Isso pode levar até 1 minuto na primeira vez — aguarde, por favor.
+          </p>
+        )}
 
         {/* Mensagem de erro (aparece só quando existe) */}
         {erro && (
@@ -613,6 +695,7 @@ return (
                 onClick={() => {
                   setIsRegister(false);
                   setErro('');
+                  setConfirmarSenha('');
                 }}
               >
                 Entrar
@@ -631,6 +714,7 @@ return (
                 onClick={() => {
                   setIsRegister(true);
                   setErro('');
+                  setConfirmarSenha('');
                 }}
               >
                 Cadastrar-se
