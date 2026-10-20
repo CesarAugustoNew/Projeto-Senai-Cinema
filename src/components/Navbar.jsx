@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
@@ -7,6 +7,14 @@ export const Navbar = () => {
   const { user, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Menu hambúrguer (só aparece no celular)
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Fecha o menu sempre que a página muda
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   const handleLogout = () => {
     logout();
@@ -27,61 +35,75 @@ export const Navbar = () => {
           Cine<span>Senai</span>
         </Link>
 
-        <div className="navbar-links">
-          <Link to="/" className={`nav-link ${isActive('/')}`}>
-            Catálogo
-          </Link>
-          <Link to="/sessoes" className={`nav-link ${isActive('/sessoes')}`}>
-            Sessões
-          </Link>
+        <button
+          type="button"
+          className={`navbar-toggle ${menuOpen ? 'open' : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={menuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
 
-          {user && (
-            <Link to="/minhas-reservas" className={`nav-link ${isActive('/minhas-reservas')}`}>
-              Minhas Reservas
+        <div className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
+          <div className="navbar-links">
+            <Link to="/" className={`nav-link ${isActive('/')}`}>
+              Catálogo
             </Link>
-          )}
+            <Link to="/sessoes" className={`nav-link ${isActive('/sessoes')}`}>
+              Sessões
+            </Link>
 
-          {isAdmin() && (
-            <div className="navbar-admin-section">
-              <span className="navbar-divider">|</span>
-              <Link to="/admin" className={`nav-link navbar-admin-link ${isActive('/admin')}`}>
-                Painel Admin
+            {user && (
+              <Link to="/minhas-reservas" className={`nav-link ${isActive('/minhas-reservas')}`}>
+                Minhas Reservas
               </Link>
-              <Link to="/admin/filmes" className={`nav-link navbar-admin-link ${isActive('/admin/filmes')}`}>
-                Filmes
-              </Link>
-              <Link to="/admin/salas" className={`nav-link navbar-admin-link ${isActive('/admin/salas')}`}>
-                Salas
-              </Link>
-              <Link to="/admin/sessoes" className={`nav-link navbar-admin-link ${isActive('/admin/sessoes')}`}>
-                Sessões
-              </Link>
-              <Link to="/admin/reservas" className={`nav-link navbar-admin-link ${isActive('/admin/reservas')}`}>
-                Reservas
-              </Link>
-              <Link to="/admin/usuarios" className={`nav-link navbar-admin-link ${isActive('/admin/usuarios')}`}>
-                Usuários
-              </Link>
-            </div>
-          )}
-        </div>
+            )}
 
-        <div className="navbar-auth">
-          {user ? (
-            <div className="navbar-user-info">
-              <div className="navbar-user-badge">
-                <span className="navbar-user-name">{user.nome}</span>
-                <span className="navbar-user-role">{user.cargo}</span>
+            {isAdmin() && (
+              <div className="navbar-admin-section">
+                <span className="navbar-divider">|</span>
+                <Link to="/admin" className={`nav-link navbar-admin-link ${isActive('/admin')}`}>
+                  Painel Admin
+                </Link>
+                <Link to="/admin/filmes" className={`nav-link navbar-admin-link ${isActive('/admin/filmes')}`}>
+                  Filmes
+                </Link>
+                <Link to="/admin/salas" className={`nav-link navbar-admin-link ${isActive('/admin/salas')}`}>
+                  Salas
+                </Link>
+                <Link to="/admin/sessoes" className={`nav-link navbar-admin-link ${isActive('/admin/sessoes')}`}>
+                  Sessões
+                </Link>
+                <Link to="/admin/reservas" className={`nav-link navbar-admin-link ${isActive('/admin/reservas')}`}>
+                  Reservas
+                </Link>
+                <Link to="/admin/usuarios" className={`nav-link navbar-admin-link ${isActive('/admin/usuarios')}`}>
+                  Usuários
+                </Link>
               </div>
-              <button onClick={handleLogout} className="navbar-logout-btn">
-                Sair
-              </button>
-            </div>
-          ) : (
-            <Link to="/login" className="navbar-login-btn">
-              Entrar
-            </Link>
-          )}
+            )}
+          </div>
+
+          <div className="navbar-auth">
+            {user ? (
+              <div className="navbar-user-info">
+                <div className="navbar-user-badge">
+                  <span className="navbar-user-name">{user.nome}</span>
+                  <span className="navbar-user-role">{user.cargo}</span>
+                </div>
+                <button onClick={handleLogout} className="navbar-logout-btn">
+                  Sair
+                </button>
+              </div>
+            ) : (
+              <Link to="/login" className="navbar-login-btn">
+                Entrar
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </nav>

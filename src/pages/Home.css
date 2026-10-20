@@ -195,3 +195,29 @@
 .home-empty-text {
   color: var(--text-secondary);
 }
+
+/* --- Responsividade: celulares --- */
+@media (max-width: 640px) {
+  .catalog-title {
+    font-size: 1.5rem;
+  }
+
+  .featured-actions {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .featured-cta {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .movie-description {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .home-empty {
+    padding: 3rem 1.25rem;
+  }
+}

@@ -643,6 +643,8 @@ select.form-control option {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -711,12 +713,151 @@ textarea.form-control {
   line-height: 1.6;
 }
 
-/* Responsividade: detalhe do filme em mobile */
+/* ============================================================
+   Responsividade: celulares
+   ============================================================ */
 @media (max-width: 640px) {
   .detail-grid {
     grid-template-columns: 1fr !important;
   }
   .detail-poster-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  /* Layout */
+  .container {
+    padding: 1.25rem 1rem;
+  }
+
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Cards de filme: 2 por linha */
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .movie-info {
+    padding: 0.75rem;
+  }
+
+  .movie-title {
+    font-size: 1rem;
+  }
+
+  .movie-meta {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  /* Filtros do catálogo: um embaixo do outro */
+  .filter-genre {
+    flex: 1 1 100%;
+  }
+
+  /* Banner em destaque */
+  .featured-banner {
+    height: auto;
+    min-height: 300px;
+    margin-bottom: 2rem;
+  }
+
+  .featured-content {
+    padding: 1.5rem 1.25rem 2.5rem;
+  }
+
+  .featured-title {
+    font-size: 1.75rem;
+  }
+
+  .featured-desc {
+    font-size: 0.9rem;
+  }
+
+  /* Modais ocupam quase a tela toda */
+  .modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .modal-content {
+    padding: 1.25rem;
+  }
+
+  /* Mapa de assentos menor */
+  .screen {
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+  }
+
+  .seating-row {
+    gap: 0.3rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .row-label {
+    width: 18px;
+    font-size: 0.8rem;
+  }
+
+  .seat {
+    width: 26px;
+    height: 26px;
+    font-size: 0.6rem;
+    border-radius: 5px;
+  }
+
+  .seat-legend {
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+  }
+
+  /* Admin */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  .custom-table {
+    font-size: 0.85rem;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 0.7rem 0.6rem;
+  }
+
+  /* Toasts ocupam a largura da tela */
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .toast {
+    min-width: 0;
+  }
+
+  /* Login */
+  .auth-container {
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+  }
+
+  .auth-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .auth-logo {
+    font-size: 1.9rem;
   }
 }

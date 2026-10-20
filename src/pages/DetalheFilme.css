@@ -325,3 +325,31 @@
     min-height: 200px;
   }
 }
+
+@media (max-width: 640px) {
+  .detalhe-loading {
+    padding: 3rem 1rem;
+  }
+
+  .detalhe-poster {
+    height: 320px;
+  }
+
+  .detalhe-info {
+    padding: 1.25rem;
+  }
+
+  .detalhe-title {
+    font-size: 1.5rem;
+  }
+
+  .detalhe-form,
+  .detalhe-login-prompt,
+  .detalhe-empty-state {
+    padding: 1.25rem;
+  }
+
+  .detalhe-submit-btn {
+    align-self: stretch;
+  }
+}

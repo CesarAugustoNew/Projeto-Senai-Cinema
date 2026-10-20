@@ -151,3 +151,57 @@
 .summary-total-amount { font-size: 1.5rem; font-weight: 800; color: var(--success); }
 
 .summary-book-btn { width: 100%; padding: 0.9rem; }
+
+/* --- Responsividade: celulares --- */
+@media (max-width: 640px) {
+  .reserva-page-loading,
+  .reserva-notfound {
+    padding: 3rem 1rem;
+  }
+
+  .sessao-info-bar {
+    padding: 1rem;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sessao-info {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .sessao-film-title { font-size: 1.2rem; }
+
+  .sessao-back-btn { width: 100%; }
+
+  .reserva-layout { gap: 1.5rem; }
+
+  /* Mapa de assentos: se a sala for larga, rola para o lado */
+  .seating-area {
+    flex-basis: 100%;
+    min-width: 0;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .seating-chart-container {
+    width: 100%;
+    align-items: flex-start;
+    overflow-x: auto;
+    margin: 1rem 0;
+    padding-bottom: 0.5rem;
+  }
+
+  /* margin auto centraliza a fileira, mas deixa rolar quando não cabe */
+  .seating-row {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .reserva-summary {
+    flex-basis: 100%;
+    min-width: 0;
+    padding: 1.25rem;
+  }
+
+  .summary-total-amount { font-size: 1.3rem; }
+}

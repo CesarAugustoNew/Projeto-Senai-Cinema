@@ -152,3 +152,136 @@
   transition: var(--transition);
   box-shadow: var(--shadow-glow);
 }
+
+/* Agrupa links + área de login (no desktop fica tudo em linha) */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-grow: 1;
+}
+
+/* Botão hambúrguer: escondido no desktop */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0 9px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* Vira um "X" quando o menu está aberto */
+.navbar-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar-toggle.open span:nth-child(2) { opacity: 0; }
+.navbar-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* --- Responsividade: tablets e celulares --- */
+@media (max-width: 960px) {
+  .navbar-container {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .navbar-logo {
+    font-size: 1.3rem;
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+
+  /* O menu vira um painel que desce abaixo da barra */
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding: 1.25rem 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+  .navbar-menu.open {
+    display: flex;
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .navbar-links,
+  .navbar-admin-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  .navbar-admin-section {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .navbar-divider {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 0.7rem 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Item ativo: fundo destacado no lugar do sublinhado */
+  .nav-link.active {
+    background: rgba(229, 9, 20, 0.1);
+  }
+
+  .nav-link.active::after {
+    display: none;
+  }
+
+  .navbar-auth {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .navbar-user-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navbar-user-badge {
+    align-items: flex-start;
+  }
+
+  .navbar-login-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem 1.2rem;
+  }
+}

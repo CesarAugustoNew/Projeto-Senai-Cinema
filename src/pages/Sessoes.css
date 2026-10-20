@@ -86,3 +86,21 @@
 
 .sessoes-no-film h3 { margin-bottom: 0.5rem; }
 .sessoes-no-film p  { color: var(--text-secondary); }
+
+/* --- Responsividade: celulares --- */
+@media (max-width: 640px) {
+  .sessoes-title { font-size: 1.5rem; }
+
+  .sessao-card {
+    padding: 1rem;
+  }
+
+  .sessao-card-left {
+    gap: 1rem;
+  }
+
+  .sessoes-empty,
+  .sessoes-no-film {
+    padding: 3rem 1.25rem;
+  }
+}
